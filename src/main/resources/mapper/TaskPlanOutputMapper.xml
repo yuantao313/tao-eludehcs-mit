@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.TaskPlanOutputMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityTaskPlanOutput" id="TaskPlanOutputMap">
+        <result property="taskNo" column="TASK_NO" jdbcType="VARCHAR"/>
+        <result property="taskPlanStart" column="TASK_PLAN_START" jdbcType="TIMESTAMP"/>
+        <result property="taskPlanEnd" column="TASK_PLAN_END" jdbcType="TIMESTAMP"/>
+        <result property="respEngineerId" column="RESP_ENGINEER_ID" jdbcType="VARCHAR"/>
+<!--        <result property="isAdjustable" column="IS_ADJUSTABLE" jdbcType="VARCHAR"/>-->
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="planId" column="PLAN_ID" jdbcType="VARCHAR"/>
+    </resultMap>
+    <insert id="insertAllTaskPlanOutputs" parameterType="list">
+
+        insert into `TASK_PLAN_OUTPUT`
+            (
+                `TASK_NO`,
+                `TASK_PLAN_START`,
+                `TASK_PLAN_END`,
+                `RESP_ENGINEER_ID`,
+                `FUNCTION_ID`,
+                `PLAN_ID`
+            )
+        values
+        <foreach collection="taskPlanOutputs" item="item" separator=",">
+            (
+                 #{item.taskNo},
+                 #{item.taskPlanStart},
+                 #{item.taskPlanEnd},
+                 #{item.respEngineerId},
+                 #{item.functionId},
+                 #{item.planId}
+            )
+        </foreach>
+    </insert>
+    <delete id="deleteTaskPlanOutputsByFunctionId">
+        DELETE FROM `task_plan_output`
+        where FUNCTION_ID = #{functionId};
+    </delete>
+
+    <select id="getAllTaskPlanOutput" resultMap="TaskPlanOutputMap">
+        select *
+        from TASK_PLAN_OUTPUT
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+</mapper>
+

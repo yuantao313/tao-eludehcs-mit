@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.CalendarMapper">
+
+    <resultMap id="EntityCalendarMap" type="com.oat.patac.entity.EntityCalendar">
+        <id column="CALENDAR_ID" jdbcType="INTEGER" property="calendarId" />
+        <result column="WEEK_WORK_DAY" jdbcType="VARCHAR" property="weekWorkDay" />
+        <result column="SHIFT_START" jdbcType="VARCHAR" property="shiftStart" />
+        <result column="SHIFT_END" jdbcType="VARCHAR" property="shiftEnd" />
+        <result column="BREAK_START" jdbcType="VARCHAR" property="breakStart" />
+        <result column="BREAK_END" jdbcType="VARCHAR" property="breakEnd" />
+        <result column="SUPPER_BREAK_START" jdbcType="VARCHAR" property="supperBreakStart" />
+        <result column="SUPPER_BREAK_END" jdbcType="VARCHAR" property="supperBreakEnd" />
+    </resultMap>
+
+    <select id="getAllCalendar" resultMap="EntityCalendarMap">
+        select *
+        from CALENDAR
+        <if test="calendarIds != null and calendarIds.size() > 0">
+            where `CALENDAR_ID` in
+            <foreach collection="calendarIds" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>;
+        </if>
+
+    </select>
+
+</mapper>

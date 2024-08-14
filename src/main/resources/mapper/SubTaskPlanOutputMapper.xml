@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.SubTaskPlanOutputMapper">
+
+    <resultMap type="com.oat.patac.entity.EntitySubTaskPlanOutput" id="SubTaskPlanOutputMap">
+        <result property="subTaskNo" column="SUB_TASK_NO" jdbcType="VARCHAR"/>
+        <result property="respEngineerId" column="RESP_ENGINEER_ID" jdbcType="VARCHAR"/>
+        <result property="subTaskPlanStart" column="SUB_TASK_PLAN_START" jdbcType="TIMESTAMP"/>
+        <result property="subTaskPlanEnd" column="SUB_TASK_PLAN_END" jdbcType="TIMESTAMP"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="planId" column="PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="taskNo" column="TASK_NO" jdbcType="VARCHAR"/>
+        <result property="taskGroup" column="TASK_GROUP" jdbcType="VARCHAR"/>
+        <result property="taskSeqNo" column="TASK_SEQ_NO" jdbcType="INTEGER"/>
+        <result property="sampleNo" column="SAMPLE_NO" jdbcType="VARCHAR"/>
+        <result property="sampleGroupId" column="SAMPLE_GROUP_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="insertAllSubTaskPlanOutputs">
+        insert into SUB_TASK_PLAN_OUTPUT
+        (
+            SUB_TASK_NO,
+            RESP_ENGINEER_ID,
+            SUB_TASK_PLAN_START,
+            SUB_TASK_PLAN_END,
+            FUNCTION_ID,
+            PLAN_ID,
+            TASK_NO,
+            TASK_GROUP,
+            TASK_SEQ_NO,
+            SAMPLE_NO,
+            SAMPLE_GROUP_ID
+        )
+        values
+        <foreach collection="subTaskPlanOutputs" item="item" separator=",">
+            (
+                #{item.subTaskNo},
+                #{item.respEngineerId},
+                #{item.subTaskPlanStart},
+                #{item.subTaskPlanEnd},
+                #{item.functionId},
+                #{item.planId},
+                #{item.taskNo},
+                #{item.taskGroup},
+                #{item.taskSeqNo},
+                #{item.sampleNo},
+                #{item.sampleGroupId}
+            )
+        </foreach>
+    </insert>
+    <delete id="deleteSubTaskPlanOutputsByFunctionId">
+        DELETE FROM `SUB_TASK_PLAN_OUTPUT`
+        where  FUNCTION_ID = #{functionId};
+    </delete>
+
+    <select id="selectAllSubTaskPlanOutputs" resultType="com.oat.patac.entity.EntitySubTaskPlanOutput">
+        select  *  from SUB_TASK_PLAN_OUTPUT
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+    <select id="getAllSubTaskPlanOutputs" resultMap="SubTaskPlanOutputMap">
+        select  *  from SUB_TASK_PLAN_OUTPUT
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+</mapper>

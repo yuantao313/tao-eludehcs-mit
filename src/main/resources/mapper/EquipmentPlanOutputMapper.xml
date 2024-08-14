@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.EquipmentPlanOutputMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityEquipmentPlanOutput" id="EquipmentPlanOutputMap">
+        <result property="equipmentPlanId" column="EQUIPMENT_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="equipmentId" column="EQUIPMENT_ID" jdbcType="VARCHAR"/>
+        <result property="stepPlanId" column="STEP_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="equipmentGroupId" column="EQUIPMENT_GROUP_ID" jdbcType="INTEGER"/>
+        <result property="equipmentPlanStart" column="EQUIPMENT_PLAN_START" jdbcType="TIMESTAMP"/>
+        <result property="equipmentPlanEnd" column="EQUIPMENT_PLAN_END" jdbcType="TIMESTAMP"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="planId" column="PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="equipmentQty" column="EQUIPMENT_QTY" jdbcType="INTEGER"/>
+        <result property="reqWorkTime" column="REQ_WORK_TIME" jdbcType="DECIMAL"/>
+        <result property="planWorkTime" column="PLAN_WORK_TIME" jdbcType="DECIMAL"/>
+        <result property="isExpandable" column="IS_EXPANDABLE" jdbcType="VARCHAR"/>
+        <result property="isConstraint" column="IS_CONSTRAINT" jdbcType="VARCHAR"/>
+        <result property="equipmentStatus" column="EQUIPMENT_STATUS" jdbcType="VARCHAR"/>
+        <result property="equipmentQty" column="EQUIPMENT_QTY" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="insertAllEquipmentPlanOutputs" parameterType="list">
+
+        insert into EQUIPMENT_PLAN_OUTPUT
+            (
+                EQUIPMENT_PLAN_ID,
+                EQUIPMENT_ID,
+                STEP_PLAN_ID,
+                EQUIPMENT_GROUP_ID,
+                EQUIPMENT_PLAN_START,
+                EQUIPMENT_PLAN_END,
+                EQUIPMENT_QTY,
+                REQ_WORK_TIME,
+                PLAN_WORK_TIME,
+                IS_EXPANDABLE,
+                IS_CONSTRAINT,
+                EQUIPMENT_STATUS,
+                FUNCTION_ID,
+                PLAN_ID
+            )
+        values
+        <foreach collection="equipmentPlanOutputs" item="item" separator=",">
+            (
+                #{item.equipmentPlanId},
+                #{item.equipmentId},
+                #{item.stepPlanId},
+                #{item.equipmentGroupId},
+                #{item.equipmentPlanStart},
+                #{item.equipmentPlanEnd},
+                #{item.equipmentQty},
+                #{item.reqWorkTime},
+                #{item.planWorkTime},
+                #{item.isExpandable},
+                #{item.isConstraint},
+                #{item.equipmentStatus},
+                #{item.functionId},
+                #{item.planId}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteEquipmentPlanOutputsByFunctionId">
+        DELETE FROM `EQUIPMENT_PLAN_OUTPUT`
+        where FUNCTION_ID = #{functionId};
+    </delete>
+
+    <select id="selectAllByEquipmentPlanOutputs" resultMap="EquipmentPlanOutputMap">
+        select * from EQUIPMENT_PLAN_OUTPUT
+
+    </select>
+
+    <select id="getAllEquipmentPlanOutputs" resultMap="EquipmentPlanOutputMap">
+        select * from EQUIPMENT_PLAN_OUTPUT
+
+    </select>
+</mapper>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.StaffCalendarMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityStaffCalendar" id="StaffCalendarMap">
+        <result property="staffId" column="STAFF_ID" jdbcType="VARCHAR"/>
+        <result property="calendarId" column="CALENDAR_ID" jdbcType="INTEGER"/>
+        <result property="calendarClass" column="CALENDAR_CLASS" jdbcType="VARCHAR"/>
+        <result property="startFrom" column="START_FROM" jdbcType="TIMESTAMP"/>
+        <result property="staffMode" column="STAFF_MODE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAllStaffCalendars" resultMap="StaffCalendarMap">
+
+        select *
+        from STAFF_CALENDAR
+        <if test="allStaffIds != null and allStaffIds.size() > 0">
+            where STAFF_ID in
+            <foreach collection="allStaffIds" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+
+    </select>
+
+
+</mapper>

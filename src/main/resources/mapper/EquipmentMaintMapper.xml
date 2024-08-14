@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.EquipmentMaintMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityEquipmentMaint" id="EquipmentMaintMap">
+        <result property="equipmentFaultId" column="EQUIPMENT_FAULT_ID" jdbcType="VARCHAR"/>
+        <result property="equipmentId" column="EQUIPMENT_ID" jdbcType="VARCHAR"/>
+        <result property="impactTest" column="IMPACT_TEST" jdbcType="VARCHAR"/>
+        <result property="labId" column="LAB_ID" jdbcType="INTEGER"/>
+        <result property="faultTime" column="FAULT_TIME" jdbcType="TIMESTAMP"/>
+        <result property="faultCompleteTime" column="FAULT_COMPLETE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="faultResolutionTime" column="FAULT_RESOLUTION_TIME" jdbcType="TIMESTAMP"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <select id="getAllEquipmentMaint" resultMap="EquipmentMaintMap">
+        select * from EQUIPMENT_MAINT
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+</mapper>

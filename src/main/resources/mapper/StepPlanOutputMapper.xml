@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.StepPlanOutputMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityStepPlanOutput" id="StepPlanOutputMap">
+        <result property="stepPlanId" column="STEP_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="bomNo" column="BOM_NO" jdbcType="VARCHAR"/>
+        <result property="subTaskNo" column="SUB_TASK_NO" jdbcType="VARCHAR"/>
+        <result property="stepId" column="STEP_ID" jdbcType="INTEGER"/>
+        <result property="stepPlanStart" column="STEP_PLAN_START" jdbcType="TIMESTAMP"/>
+        <result property="stepPlanEnd" column="STEP_PLAN_END" jdbcType="TIMESTAMP"/>
+        <result property="reqProcTime" column="REQ_PROC_TIME" jdbcType="DECIMAL"/>
+        <result property="planDuration" column="PLAN_DURATION" jdbcType="DECIMAL"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="planId" column="PLAN_ID" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertAllStepPlanOutputs" parameterType="list">
+
+        insert into  STEP_PLAN_OUTPUT
+            (
+                STEP_PLAN_ID,
+                BOM_NO,
+                SUB_TASK_NO,
+                STEP_ID,
+                STEP_PLAN_START,
+                STEP_PLAN_END,
+                REQ_PROC_TIME,
+                PLAN_DURATION,
+                FUNCTION_ID,
+                PLAN_ID
+            )
+        values
+        <foreach collection="stepPlanOutputs" item="item" separator=",">
+            (
+             #{item.stepPlanId},
+             #{item.bomNo},
+             #{item.subTaskNo},
+             #{item.stepId},
+             #{item.stepPlanStart},
+             #{item.stepPlanEnd},
+             #{item.reqProcTime},
+             #{item.planDuration},
+             #{item.functionId},
+             #{item.planId}
+            )
+        </foreach>
+    </insert>
+    <delete id="deleteStepPlanOutputsByFunctionId">
+        DELETE FROM `STEP_PLAN_OUTPUT`
+        where FUNCTION_ID = #{functionId};
+    </delete>
+
+    <select id="selectAllStepPlanOutputs" resultType="com.oat.patac.entity.EntityStepPlanOutput">
+        select *
+        from STEP_PLAN_OUTPUT
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+    <select id="getAllStepPlanOutputs" resultMap="StepPlanOutputMap">
+        select *
+        from STEP_PLAN_OUTPUT
+        where FUNCTION_ID = #{functionId};
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.SpecialDayMapper">
+    <resultMap type="com.oat.patac.entity.EntitySpecialDay" id="SpecialDayMap">
+        <result property="specialDay" column="SPECIAL_DAY" jdbcType="TIMESTAMP"/>
+        <result property="workDayType" column="WORK_DAY_TYPE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="getAllSpecialDay" resultMap="SpecialDayMap">
+        select * from SPECIAL_DAY;
+    </select>
+
+    <select id="getSpecialDayAfterSpecificTime" resultMap="SpecialDayMap">
+        select * from SPECIAL_DAY
+        where SPECIAL_DAY >= #{time};
+    </select>
+
+</mapper>

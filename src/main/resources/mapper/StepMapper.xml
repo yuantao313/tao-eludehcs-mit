@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.StepMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityStep" id="StepMap">
+        <result property="bomNo" column="BOM_NO" jdbcType="VARCHAR"/>
+        <result property="stepId" column="STEP_ID" jdbcType="INTEGER"/>
+        <result property="stepName" column="STEP_NAME" jdbcType="VARCHAR"/>
+        <result property="stepOrder" column="STEP_ORDER" jdbcType="INTEGER"/>
+        <result property="timeLength" column="TIME_LENGTH" jdbcType="DECIMAL"/>
+        <result property="isConstTime" column="IS_CONST_TIME" jdbcType="VARCHAR"/>
+        <result property="isConnected" column="IS_CONNECTED" jdbcType="VARCHAR"/>
+        <result property="maxStepGap" column="MAX_STEP_GAP" jdbcType="DECIMAL"/>
+        <result property="testPhase" column="TEST_PHASE" jdbcType="VARCHAR"/>
+        <result property="isReportOff" column="IS_REPORT_OFF" jdbcType="VARCHAR"/>
+        <result property="packingFlag" column="PACKING_FLAG" jdbcType="VARCHAR"/>
+        <result property="isDisabled" column="IS_DISABLED" jdbcType="VARCHAR"/>
+        <result property="isPreemptive" column="IS_PREEMPTIVE" jdbcType="VARCHAR"/>
+        <result property="engineerCount" column="ENGINEER_COUNT" jdbcType="INTEGER"/>
+        <result property="engineerWorktime" column="ENGINEER_WORKTIME" jdbcType="DECIMAL"/>
+        <result property="engineerDailyMode" column="ENGINEER_DAILY_MODE" jdbcType="VARCHAR"/>
+        <result property="engineerDayNum" column="ENGINEER_DAY_NUM" jdbcType="INTEGER"/>
+        <result property="engineerDailyWorktime" column="ENGINEER_DAILY_WORKTIME" jdbcType="DECIMAL"/>
+        <result property="engineerWorktimeType" column="ENGINEER_WORKTIME_TYPE" jdbcType="VARCHAR"/>
+        <result property="isEngineerConstraint" column="IS_ENGINEER_CONSTRAINT" jdbcType="VARCHAR"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+<!--    select *-->
+<!--    from STEP s-->
+<!--    where s.BOM_NO in-->
+<!--    (select st.`BOM_NO` from `SUB_TASK` st-->
+<!--    where st.`FUNCTION_ID` = #{functionId} and (st.TEST_STATUS in ("1", "4") or st.TEST_STATUS is null));-->
+    <select id="getAllStep" resultMap="StepMap">
+        SELECT DISTINCT s.`BOM_NO`, s.`ENGINEER_COUNT`, s.`ENGINEER_DAILY_MODE`, s.`ENGINEER_DAILY_WORKTIME`, s.`ENGINEER_DAY_NUM`, s.`ENGINEER_WORKTIME`, s.`ENGINEER_WORKTIME_TYPE`, s.`FUNCTION_ID`,
+                        s.`IS_CONST_TIME`, s.`IS_DISABLED`, s.`IS_ENGINEER_CONSTRAINT`, s.`IS_PREEMPTIVE`,s.`IS_REPORT_OFF`,s.`MAX_STEP_GAP`,s.`PACKING_FLAG`,s.`STEP_ID`, s.`STEP_NAME`,
+                        s.`STEP_ORDER`, s.`TEST_PHASE`,s.`TIME_LENGTH` FROM `step` s
+                                JOIN `sub_task` st ON s.`BOM_NO` = st.`BOM_NO`
+        WHERE st.`FUNCTION_ID` = #{functionId} AND (st.TEST_STATUS IN ("1", "4") OR st.TEST_STATUS IS NULL);
+    </select>
+
+</mapper>

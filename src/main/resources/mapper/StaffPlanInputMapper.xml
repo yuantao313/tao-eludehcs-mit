@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.StaffPlanInputMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityStaffPlanInput" id="StaffPlanInputMap">
+        <result property="staffPlanId" column="STAFF_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="staffId" column="STAFF_ID" jdbcType="VARCHAR"/>
+        <result property="skillIdSet" column="SKILL_ID_SET" jdbcType="VARCHAR"/>
+        <result property="stepPlanId" column="STEP_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="staffPlanStart" column="STAFF_PLAN_START" jdbcType="TIMESTAMP"/>
+        <result property="staffPlanEnd" column="STAFF_PLAN_END" jdbcType="TIMESTAMP"/>
+        <result property="staffActualStart" column="STAFF_ACTUAL_START" jdbcType="TIMESTAMP"/>
+        <result property="staffActualEnd" column="STAFF_ACTUAL_END" jdbcType="TIMESTAMP"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="isConstraint" column="IS_CONSTRAINT" jdbcType="VARCHAR"/>
+        <result property="planWorkTime" column="PLAN_WORK_TIME" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <select id="getAllStaffPlanInput" resultMap="StaffPlanInputMap">
+        select *
+        from STAFF_PLAN_INPUT
+        where STAFF_ACTUAL_END > #{planPeriodStartTime}
+        <if test="allStaffIds != null and allStaffIds.size() > 0">
+            and `STAFF_ID` in
+            <foreach collection="allStaffIds" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>;
+    </select>
+
+</mapper>

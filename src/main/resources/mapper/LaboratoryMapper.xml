@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.LaboratoryMapper">
+
+    <resultMap id="EntityLaboratoryMap" type="com.oat.patac.entity.EntityLaboratory">
+        <id column="LAB_ID" jdbcType="INTEGER" property="labId" />
+        <result column="LAB_NAME" jdbcType="VARCHAR" property="labName" />
+        <result column="LAB_TYPE" jdbcType="VARCHAR" property="labType" />
+        <result column="TEST_AREA_ID" jdbcType="INTEGER" property="testAreaId" />
+    </resultMap>
+
+    <select id="getAllLaboratory" resultMap="EntityLaboratoryMap">
+        select l.LAB_ID, l.LAB_NAME, l.LAB_TYPE, l.TEST_AREA_ID
+        from LAB l
+            join `FUNCTION` f on l.LAB_ID = f.LAB_ID
+        where f.FUNCTION_ID = #{functionId};
+    </select>
+</mapper>

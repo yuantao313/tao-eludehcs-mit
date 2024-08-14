@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.SubTaskMapper">
+
+    <resultMap type="com.oat.patac.entity.EntitySubTask" id="SubTaskMap">
+        <result property="subTaskNo" column="SUB_TASK_NO" jdbcType="VARCHAR"/>
+        <result property="taskNo" column="TASK_NO" jdbcType="VARCHAR"/>
+        <result property="bomNo" column="BOM_NO" jdbcType="VARCHAR"/>
+        <result property="procedureNo" column="PROCEDURE_NO" jdbcType="VARCHAR"/>
+        <result property="sampleGroupId" column="SAMPLE_GROUP_ID" jdbcType="INTEGER"/>
+        <result property="provideDate" column="PROVIDE_DATE" jdbcType="INTEGER"/>
+        <result property="returnDate" column="RETURN_DATE" jdbcType="TIMESTAMP"/>
+        <result property="planGranul" column="PLAN_GRANUAL" jdbcType="INTEGER"/>
+        <result property="planTimeLimit" column="PLAN_TIME_LIMIT" jdbcType="INTEGER"/>
+        <result property="taskGroup" column="TASK_GROUP" jdbcType="VARCHAR"/>
+        <result property="taskSeqNo" column="TASK_SEQ_NO" jdbcType="INTEGER"/>
+        <result property="isDeleted" column="IS_DELETED" jdbcType="VARCHAR"/>
+        <result property="businessFlag" column="BUSINESS_FLAG" jdbcType="VARCHAR"/>
+        <result property="testStatus" column="TEST_STATUS" jdbcType="VARCHAR"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getSubTaskByFunctionId" resultMap="SubTaskMap">
+        select * from SUB_TASK
+        where FUNCTION_ID = #{functionId}
+          and (TEST_STATUS in ("1", "4") or TEST_STATUS is null) ;
+    </select>
+
+    <select id="getSubTask" resultMap="SubTaskMap">
+        select * from SUB_TASK
+        where (TEST_STATUS in ("1", "4") or TEST_STATUS is null) ;
+    </select>
+
+</mapper>

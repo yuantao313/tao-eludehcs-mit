@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.TestAreaMapper">
+
+    <resultMap id="EntityTestAreaMap" type="com.oat.patac.entity.EntityTestArea">
+        <result column="TEST_AREA_ID" jdbcType="INTEGER" property="testAreaId" />
+        <result column="TEST_AREA_NAME" jdbcType="VARCHAR" property="testAreaName" />
+    </resultMap>
+
+<!--    <insert id="addTestArea">-->
+<!--        insert into TEST_AREA (TEST_AREA_ID, TEST_AREA_NAME)-->
+<!--        values (#{testAreaId}, #{testAreaName})-->
+<!--    </insert>-->
+
+    <select id="getAllTestArea" resultMap="EntityTestAreaMap">
+            select t.TEST_AREA_ID, t.TEST_AREA_NAME
+            from
+                TEST_AREA t join LAB l on t.TEST_AREA_ID = l.TEST_AREA_ID
+                join `FUNCTION` f on f.LAB_ID = l.LAB_ID
+            where f.FUNCTION_ID = #{functionId};
+    </select>
+
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.StepEquipmentGroupMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityStepEquipmentGroup" id="StepEquipmentMap">
+        <result property="equipmentGroupId" column="EQUIPMENT_GROUP_ID" jdbcType="INTEGER"/>
+        <result property="stepId" column="STEP_ID" jdbcType="INTEGER"/>
+        <result property="bomNo" column="BOM_NO" jdbcType="VARCHAR"/>
+        <result property="equipmentGroupName" column="EQUIPMENT_GROUP_NAME" jdbcType="VARCHAR"/>
+        <result property="equipmentNum" column="EQUIPMENT_NUM" jdbcType="INTEGER"/>
+        <result property="equipmentQty" column="EQUIPMENT_QTY" jdbcType="INTEGER"/>
+        <result property="workTime" column="WORK_TIME" jdbcType="DECIMAL"/>
+        <result property="isFixingEquipment" column="IS_FIXING_EQUIPMENT" jdbcType="VARCHAR"/>
+        <result property="isConstraint" column="IS_CONSTRAINT" jdbcType="VARCHAR"/>
+        <result property="equipmentStatus" column="EQUIPMENT_STATUS" jdbcType="VARCHAR"/>
+        <result property="dailyMode" column="DAILY_MODE" jdbcType="VARCHAR"/>
+        <result property="dayNum" column="DAY_NUM" jdbcType="INTEGER"/>
+        <result property="dailyWorkTime" column="DAILY_WORK_TIME" jdbcType="DECIMAL"/>
+        <result property="isExpandable" column="IS_EXPANDABLE" jdbcType="VARCHAR"/>
+        <result property="isSyncStep" column="IS_SYNC_STEP" jdbcType="VARCHAR"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+<!--    select *-->
+<!--    from STEP_EQUIPMENT_GROUP s-->
+<!--    where s.`BOM_NO` in-->
+<!--    (select st.`BOM_NO` from `SUB_TASK` st-->
+<!--    where st.`FUNCTION_ID` = #{functionId} and (st.TEST_STATUS in ("1", "4") or st.TEST_STATUS is null));-->
+    <select id="getAllStepEquipment" resultMap="StepEquipmentMap">
+        SELECT DISTINCT s.`BOM_NO`, s.`DAILY_MODE`, s.`DAILY_WORK_TIME`, s.`DAY_NUM`, s.`EQUIPMENT_GROUP_ID`,
+                        s.`EQUIPMENT_GROUP_NAME`, s.`EQUIPMENT_NUM`, s.`EQUIPMENT_QTY`, s.`EQUIPMENT_STATUS`,
+                        s.`FUNCTION_ID`, s.`IS_CONSTRAINT`, s.`IS_EXPANDABLE`,s.`IS_FIXING_EQUIPMENT`,
+                        s.`IS_SYNC_STEP`, s.`STEP_ID`, s.`WORK_TIME`
+        FROM `step_equipment_group` s JOIN `sub_task`  st ON s.`BOM_NO` = st.`BOM_NO`
+        WHERE st.`FUNCTION_ID` = #{functionId} AND (st.TEST_STATUS IN ("1", "4") OR st.TEST_STATUS IS NULL);
+    </select>
+
+</mapper>

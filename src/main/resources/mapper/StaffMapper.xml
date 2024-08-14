@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.StaffMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityStaff" id="StaffMap">
+        <result property="staffId" column="STAFF_ID" jdbcType="VARCHAR"/>
+        <result property="staffName" column="STAFF_NAME" jdbcType="VARCHAR"/>
+        <result property="staffClassId" column="STAFF_CLASS_ID" jdbcType="VARCHAR"/>
+<!--        <result property="workLoad" column="WORK_LOAD" jdbcType="DECIMAL"/>-->
+<!--        <result property="maxWorkLoad" column="MAX_WORK_LOAD" jdbcType="DECIMAL"/>-->
+        <result property="labId" column="LAB_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+<!--   和 EntityEngineerFunctionRel 连接查询-->
+    <select id="getAllEngineers" resultMap="StaffMap">
+        SELECT * FROM `staff` s
+                          JOIN `engineer_function_rel` ef ON s.`STAFF_ID` = ef.`STAFF_ID`
+        WHERE ef.`FUNCTION_ID` = #{functionId} and s.`STAFF_CLASS_ID` = "0";
+    </select>
+
+<!--    SELECT *-->
+<!--    from STAFF-->
+<!--    where `STAFF_ID` in-->
+<!--    (-->
+<!--    select `STAFF_ID`-->
+<!--    from `technician_skill`-->
+<!--    where `SKILL_ID` in-->
+<!--    <foreach collection="skills" item="item" index="index" open="(" separator="," close=")">-->
+<!--        #{item}-->
+<!--    </foreach>-->
+<!--    )-->
+    <select id="getAllTechniciansByStepSkill" resultMap="StaffMap">
+
+        SELECT DISTINCT s.`LAB_ID`, s.`STAFF_CLASS_ID`, s.`STAFF_ID`, s.`STAFF_NAME` FROM `staff` s
+                JOIN `technician_skill` t ON s.`STAFF_ID` = t.`STAFF_ID`
+        WHERE t.`SKILL_ID` in
+                <foreach collection="skills" item="item" index="index" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+
+    </select>
+
+    <select id="getAllTechnicians" resultMap="StaffMap">
+        select * from STAFF
+        where STAFF_CLASS_ID = "1";
+    </select>
+
+    <select id="getAllStaffs" resultMap="StaffMap">
+        select * from STAFF;
+    </select>
+
+</mapper>

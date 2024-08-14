@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.MessageMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityMessage" id="MessageMap">
+        <result property="messageId" column="MESSAGE_ID" jdbcType="INTEGER"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="planId" column="PLAN_ID" jdbcType="INTEGER"/>
+        <result property="messageSeverity" column="MESSAGE_SEVERITY" jdbcType="VARCHAR"/>
+        <result property="messageType" column="MESSAGE_TYPE" jdbcType="VARCHAR"/>
+        <result property="messageDate" column="MESSAGE_DATE" jdbcType="TIMESTAMP"/>
+        <result property="messageBody" column="MESSAGE_BODY" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <insert id="insertMessage">
+        INSERT INTO `message_output`
+            (`MESSAGE_ID`,`PLAN_ID`, `FUNCTION_ID`, `MESSAGE_SEVERITY`, `MESSAGE_TYPE`, `MESSAGE_DATE` ,`MESSAGE_BODY`)
+        VALUES
+            (#{messageId}, #{planId}, #{functionId}, #{messageSeverity}, #{messageType}, #{messageDate}, #{messageBody});
+    </insert>
+
+    <insert id="insertAllMessage" parameterType="arraylist">
+        INSERT INTO `message_output`
+        (`MESSAGE_ID`,`PLAN_ID`, `FUNCTION_ID`, `MESSAGE_SEVERITY`, `MESSAGE_TYPE`, `MESSAGE_DATE` ,`MESSAGE_BODY`)
+        VALUES
+        <foreach collection="messages" item="item" separator=",">
+            (
+            #{item.messageId},
+             #{item.planId},
+             #{item.functionId},
+             #{item.messageSeverity},
+             #{item.messageType},
+             #{item.messageDate},
+             #{item.messageBody}
+             )
+        </foreach>
+    </insert>
+
+    <delete id="deleteMessagesByFunctionId">
+        DELETE FROM `message_output`
+        where FUNCTION_ID = #{functionId};
+    </delete>
+
+    <select id="selectAllMessage" resultMap="MessageMap">
+        SELECT `FUNCTION_ID`, `MESSAGE_SEVERITY`, `MESSAGE_TYPE`, `MESSAGE_BODY`
+        from MESSAGE_output
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.StepPlanInputMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityStepPlanInput" id="StepPlanInputMap">
+        <result property="stepPlanId" column="STEP_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="bomNo" column="BOM_NO" jdbcType="VARCHAR"/>
+        <result property="subTaskNo" column="SUB_TASK_NO" jdbcType="VARCHAR"/>
+        <result property="stepId" column="STEP_ID" jdbcType="INTEGER"/>
+        <result property="stepPlanStart" column="STEP_PLAN_START" jdbcType="TIMESTAMP"/>
+        <result property="stepPlanEnd" column="STEP_PLAN_END" jdbcType="TIMESTAMP"/>
+        <result property="stepActualStart" column="STEP_ACTUAL_START" jdbcType="TIMESTAMP"/>
+        <result property="stepActualEnd" column="STEP_ACTUAL_END" jdbcType="TIMESTAMP"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getAllStepPlanInput" resultMap="StepPlanInputMap">
+        select *
+        from STEP_PLAN_INPUT
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+</mapper>

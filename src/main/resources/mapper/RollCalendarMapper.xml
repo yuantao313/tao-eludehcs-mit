@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.RollCalendarMapper">
+
+    <resultMap id="BaseResultMap" type="com.oat.patac.entity.EntityRollCalendar">
+        <result column="CALENDAR_ID" jdbcType="INTEGER" property="calendarId" />
+        <result column="ROLL_SEQ" jdbcType="INTEGER" property="rollSeq" />
+        <result column="REPEATE_NUM" jdbcType="INTEGER" property="repeateNum" />
+        <result column="CALENDAR_TYPE" jdbcType="VARCHAR" property="calendarType" />
+        <result column="SHIFT_START" jdbcType="VARCHAR" property="shiftStart" />
+        <result column="SHIFT_END" jdbcType="VARCHAR" property="shiftEnd" />
+        <result column="BREAK_START" jdbcType="VARCHAR" property="breakStart" />
+        <result column="BREAK_END" jdbcType="VARCHAR" property="breakEnd" />
+        <result column="SUPPER_BREAK_START" jdbcType="VARCHAR" property="supperBreakStart" />
+        <result column="SUPPER_BREAK_END" jdbcType="VARCHAR" property="supperBreakEnd" />
+    </resultMap>
+
+    <select id="getAllRollCalendar" resultMap="BaseResultMap">
+        select * from ROLL_CALENDAR
+        <if test="calendarIds != null and calendarIds.size() > 0">
+            where `CALENDAR_ID` in
+            <foreach collection="calendarIds" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>;
+    </select>
+</mapper>

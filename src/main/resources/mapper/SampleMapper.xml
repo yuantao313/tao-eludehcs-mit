@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.SampleMapper">
+
+    <resultMap type="com.oat.patac.entity.EntitySample" id="SampleMap">
+        <result property="sampleId" column="SAMPLE_ID" jdbcType="INTEGER"/>
+        <result property="sampleQuantity" column="SAMPLE_QUANTITY" jdbcType="INTEGER"/>
+        <result property="sampleGroupId" column="SAMPLE_GROUP_ID" jdbcType="INTEGER"/>
+        <result property="sampleGroupName" column="SAMPLE_GROUP_NAME" jdbcType="VARCHAR"/>
+        <result property="sampleType" column="SAMPLE_TYPE" jdbcType="VARCHAR"/>
+        <result property="packingFlag" column="PACKING_FLAG" jdbcType="VARCHAR"/>
+        <result property="taskNo" column="TASK_NO" jdbcType="VARCHAR"/>
+        <result property="sampleNo" column="SAMPLE_NO" jdbcType="VARCHAR"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getAllSample" resultMap="SampleMap">
+        select *
+        from SAMPLE
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+    <select id="getSampleBySubTask" resultMap="SampleMap">
+        select *
+        from `SAMPLE` s
+        where s.`SAMPLE_GROUP_ID` in
+        (select `SAMPLE_GROUP_ID`
+        from `SUB_TASK` st
+        where st.`FUNCTION_ID` = #{functionId} and (st.TEST_STATUS IN ("1", "4") OR TEST_STATUS IS NULL));
+    </select>
+
+</mapper>

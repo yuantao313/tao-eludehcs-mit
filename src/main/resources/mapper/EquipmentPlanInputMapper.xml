@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.EquipmentPlanInputMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityEquipmentPlanInput" id="EquipmentPlanInputMap">
+        <result property="equipmentPlanId" column="EQUIPMENT_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="equipmentId" column="EQUIPMENT_ID" jdbcType="VARCHAR"/>
+        <result property="stepPlanId" column="STEP_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="equipmentPlanStart" column="EQUIPMENT_PLAN_START" jdbcType="TIMESTAMP"/>
+        <result property="equipmentPlanEnd" column="EQUIPMENT_PLAN_END" jdbcType="TIMESTAMP"/>
+        <result property="equipmentActualStart" column="EQUIPMENT_ACTUAL_START" jdbcType="TIMESTAMP"/>
+        <result property="equipmentActualEnd" column="EQUIPMENT_ACTUAL_END" jdbcType="TIMESTAMP"/>
+        <result property="equipmentQty" column="EQUIPMENT_QTY" jdbcType="INTEGER"/>
+        <result property="isExpandable" column="IS_EXPANDABLE" jdbcType="VARCHAR"/>
+        <result property="isConstraint" column="IS_CONSTRAINT" jdbcType="VARCHAR"/>
+        <result property="equipmentStatus" column="EQUIPMENT_STATUS" jdbcType="VARCHAR"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getAllEquipmentPlanInput" resultMap="EquipmentPlanInputMap">
+        select *
+        from EQUIPMENT_PLAN_INPUT
+        where EQUIPMENT_ACTUAL_END > #{planPeriodStartTime} and IS_CONSTRAINT = "1"
+        <!--if test="equipmentIdSet != null and equipmentIdSet.size() > 0"-->
+            and `EQUIPMENT_ID` in
+            <foreach collection="equipmentIdSet" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        <!--/-if-->;
+    </select>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.TechnicianSkillMapper">
+
+  <resultMap type="com.oat.patac.entity.EntityTechnicianSkill" id="TechnicianSkillMap">
+    <result property="staffId" column="STAFF_ID" jdbcType="VARCHAR"/>
+    <result property="skillId" column="SKILL_ID" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <select id="getAllTechnicianSkill" resultMap="TechnicianSkillMap">
+
+    SELECT `SKILL_ID`, `STAFF_ID`
+    FROM `technician_skill`
+    <if test="skills != null and skills.size() > 0">
+      where `SKILL_ID` in
+      <foreach collection="skills" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>;
+    </if>
+
+  </select>
+
+</mapper>

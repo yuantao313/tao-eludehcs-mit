@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.StaffPlanOutputMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityStaffPlanOutput" id="StaffPlanOutputMap">
+        <result property="staffPlanId" column="STAFF_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="staffId" column="STAFF_ID" jdbcType="VARCHAR"/>
+        <result property="skillIdSet" column="SKILL_ID_SET" jdbcType="VARCHAR"/>
+        <result property="stepPlanId" column="STEP_PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="staffPlanStart" column="STAFF_PLAN_START" jdbcType="TIMESTAMP"/>
+        <result property="staffPlanEnd" column="STAFF_PLAN_END" jdbcType="TIMESTAMP"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="reqWorkTime" column="REQ_WORK_TIME" jdbcType="DECIMAL"/>
+        <result property="planWorkTime" column="PLAN_WORK_TIME" jdbcType="DECIMAL"/>
+        <result property="planId" column="PLAN_ID" jdbcType="VARCHAR"/>
+        <result property="isConstraint" column="IS_CONSTRAINT" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertAllStaffPlanOutputs" parameterType="list">
+
+        insert into  STAFF_PLAN_OUTPUT
+        (
+            STAFF_PLAN_ID,
+            STAFF_ID,
+            SKILL_ID_SET,
+            STEP_PLAN_ID,
+            STAFF_PLAN_START,
+            STAFF_PLAN_END,
+            REQ_WORK_TIME,
+            PLAN_WORK_TIME,
+            IS_CONSTRAINT,
+            FUNCTION_ID,
+            PLAN_ID
+        )
+        values
+        <foreach collection="staffPlanOutputs" item="item" separator=",">
+            (
+             #{item.staffPlanId},
+             #{item.staffId},
+             #{item.skillIdSet},
+             #{item.stepPlanId},
+             #{item.staffPlanStart},
+             #{item.staffPlanEnd},
+             #{item.reqWorkTime},
+             #{item.planWorkTime},
+             #{item.isConstraint},
+             #{item.functionId},
+             #{item.planId}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteStaffPlanOutputsByFunctionId">
+        DELETE FROM `STAFF_PLAN_OUTPUT`
+        where FUNCTION_ID = #{functionId};
+    </delete>
+
+    <select id="selectStaffPlanOutputs" resultMap="StaffPlanOutputMap">
+        select *
+        from STAFF_PLAN_OUTPUT
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+    <select id="getAllStaffPlanOutputs" resultMap="StaffPlanOutputMap">
+        select *
+        from STAFF_PLAN_OUTPUT
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.AuthProcedureMapper">
+
+  <resultMap id="BaseResultMap" type="com.oat.patac.entity.EntityAuthProcedure">
+    <id column="PROCEDURE_NO" jdbcType="VARCHAR" property="procedureNo" />
+    <id column="STAFF_ID" jdbcType="VARCHAR" property="staffId" />
+  </resultMap>
+
+
+<!--    select a.PROCEDURE_NO, a.STAFF_ID-->
+<!--    from `auth_procedure` a-->
+<!--    where a.PROCEDURE_NO in-->
+<!--    (select p.PROCEDURE_NO from `PROCEDURE` p-->
+<!--    where p.`PROCEDURE_NO` in-->
+<!--    (select st.`PROCEDURE_NO` from `SUB_TASK` st-->
+<!--    where st.`FUNCTION_ID` = #{functionId}-->
+<!--    and (st.TEST_STATUS in ("1", "4") or st.TEST_STATUS is null)));-->
+
+  <select id="getAllAuthProcedure" resultMap="BaseResultMap">
+    SELECT DISTINCT  a.PROCEDURE_NO, a.STAFF_ID FROM `auth_procedure` a
+        JOIN `PROCEDURE_TABLE` p ON a.`PROCEDURE_NO` = p.`PROCEDURE_NO`
+        JOIN `SUB_TASK` st ON st.`PROCEDURE_NO` = p.`PROCEDURE_NO`
+    WHERE
+        st.`FUNCTION_ID` = #{functionId} AND (st.TEST_STATUS IN ("1", "4") OR st.TEST_STATUS IS NULL);
+  </select>
+
+
+</mapper>

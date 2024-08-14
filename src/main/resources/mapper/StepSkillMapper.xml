@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.StepSkillMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityStepSkill" id="StepSkillMap">
+        <result property="stepSkillId" column="STEP_SKILL_ID" jdbcType="INTEGER"/>
+        <result property="skillIdSet" column="SKILL_ID_SET" jdbcType="VARCHAR"/>
+        <result property="bomNo" column="BOM_NO" jdbcType="VARCHAR"/>
+        <result property="stepId" column="STEP_ID" jdbcType="INTEGER"/>
+        <result property="technicianCount" column="TECHNICIAN_COUNT" jdbcType="INTEGER"/>
+        <result property="technicianWorktime" column="TECHNICIAN_WORKTIME" jdbcType="DECIMAL"/>
+        <result property="technicianDailyMode" column="TECHNICIAN_DAILY_MODE" jdbcType="VARCHAR"/>
+        <result property="technicianDayNum" column="TECHNICIAN_DAY_NUM" jdbcType="DECIMAL"/>
+        <result property="technicianDailyWorktime" column="TECHNICIAN_DAILY_WORKTIME" jdbcType="DECIMAL"/>
+        <result property="technicianWorktimeType" column="TECHNICIAN_WORKTIME_TYPE" jdbcType="VARCHAR"/>
+        <result property="isTechnicianConstraint" column="IS_TECHNICIAN_CONSTRAINT" jdbcType="VARCHAR"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+<!--    select *-->
+<!--    from STEP_SKILL s-->
+<!--    where s.`BOM_NO` in-->
+<!--    (select st.`BOM_NO` from `SUB_TASK` st-->
+<!--    where st.`FUNCTION_ID` = #{functionId} and (st.TEST_STATUS in ("1", "4") or st.TEST_STATUS is null));-->
+    <select id="getAllStepSkills" resultMap="StepSkillMap">
+        SELECT DISTINCT s.`BOM_NO`, s.`FUNCTION_ID`, s.`IS_TECHNICIAN_CONSTRAINT`, s.`SKILL_ID_SET`, s.`STEP_ID`, s.`STEP_SKILL_ID`, s.`TECHNICIAN_COUNT`, s.`TECHNICIAN_DAILY_MODE`,
+                        s.`TECHNICIAN_DAILY_WORKTIME`, s.`TECHNICIAN_DAY_NUM`, s.`TECHNICIAN_WORKTIME`, s.`TECHNICIAN_WORKTIME_TYPE` FROM `step_skill` s
+                JOIN `sub_task` st ON s.`BOM_NO` = st.`BOM_NO`
+        WHERE st.`FUNCTION_ID` = #{functionId} AND (st.TEST_STATUS IN ("1", "4") OR st.TEST_STATUS IS NULL);
+
+    </select>
+</mapper>

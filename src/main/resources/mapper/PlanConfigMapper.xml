@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.PlanConfigMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityPlanConfig" id="PlanConfigMap">
+        <result property="planConfigId" column="PLAN_CONFIG_ID" jdbcType="INTEGER"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="timeLimit" column="TIME_LIMIT" jdbcType="INTEGER"/>
+        <result property="planGranul" column="PLAN_GRANUL" jdbcType="INTEGER"/>
+        <result property="calendarDays" column="CALENDAR_DAYS" jdbcType="INTEGER"/>
+        <result property="entrustDays" column="ENTRUST_DAYS" jdbcType="INTEGER"/>
+        <result property="leadFence" column="LEAD_FENCE" jdbcType="DECIMAL"/>
+        <result property="isWeekendINC" column="IS_WEEKEND_INC" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="getAllPlanConfigs" resultMap="PlanConfigMap">
+        select *
+        from PLAN_CONFIG_TEMPLATE p
+        where p.`FUNCTION_ID` = #{functionId};
+    </select>
+
+    <select id="getPlanConfigBySubTaskBOM" resultMap="PlanConfigMap">
+        select *
+        from PLAN_CONFIG_TEMPLATE p
+        where p.`PLAN_CONFIG_ID` in
+        (select bom.`PLAN_CONFIG_ID`
+        from `SUB_TASK` st join `BOM` bom on st.`BOM_NO` = bom.`BOM_NO`
+        where st.`FUNCTION_ID` = #{functionId} and (st.TEST_STATUS IN ("1", "4") OR TEST_STATUS IS NULL));
+    </select>
+</mapper>

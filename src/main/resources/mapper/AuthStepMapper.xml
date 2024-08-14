@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.AuthStepMapper">
+
+  <resultMap id="BaseResultMap" type="com.oat.patac.entity.EntityAuthStep">
+    <id column="BOM_NO" jdbcType="VARCHAR" property="bomNo" />
+    <id column="STEP_ID" jdbcType="INTEGER" property="stepId" />
+    <id column="STAFF_ID" jdbcType="VARCHAR" property="staffId" />
+  </resultMap>
+
+<!--  SELECT DISTINCT a.`BOM_NO`, a.`STEP_ID`, `STAFF_ID`-->
+<!--  FROM `auth_step` a join SUB_TASK s on a.`BOM_NO` = s.`BOM_NO`-->
+<!--  where s.`FUNCTION_ID` = #{functionId};-->
+
+<!--  select * from-->
+<!--  `auth_step` where `BOM_NO` in-->
+<!--  (select st.`BOM_NO` from `SUB_TASK` st-->
+<!--  where st.`FUNCTION_ID` = #{functionId} and (st.TEST_STATUS in ("1", "4") or st.TEST_STATUS is null))-->
+
+  <select id="getAllAuthStep" resultMap="BaseResultMap">
+    SELECT DISTINCT a.`BOM_NO`, a.`STAFF_ID`, a.`STEP_ID` FROM `auth_step` a
+            JOIN `sub_task` st ON a.`BOM_NO` = st.`BOM_NO`
+    WHERE st.`FUNCTION_ID` = #{functionId} AND (st.TEST_STATUS IN ("1", "4") OR st.TEST_STATUS IS NULL);
+  </select>
+
+</mapper>

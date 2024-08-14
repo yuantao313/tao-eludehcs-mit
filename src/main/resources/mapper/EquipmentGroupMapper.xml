@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.EquipmentGroupMapper">
+
+    <resultMap id="EntityEquipmentGroupMap" type="com.oat.patac.entity.EntityEquipmentGroup">
+        <id column="EQUIPMENT_GROUP_ID" jdbcType="INTEGER" property="equipmentGroupId" />
+        <result column="EQUIPMENT_GROUP_NAME" jdbcType="VARCHAR" property="equipmentGroupName" />
+        <result column="LAB_ID" jdbcType="INTEGER" property="labId" />
+        <result column="EQUIPMENT_FALIURE_TYPE" jdbcType="VARCHAR" property="equipmentFaliureType" />
+    </resultMap>
+
+    <select id="getAllEquipmentGroup" resultMap="EntityEquipmentGroupMap">
+        SELECT DISTINCT  e.`EQUIPMENT_GROUP_ID`,  e.`EQUIPMENT_GROUP_NAME`, e.`LAB_ID`, e.`EQUIPMENT_FALIURE_TYPE`
+        FROM `step_equipment_group` se JOIN `equipment_group` e ON se.`EQUIPMENT_GROUP_ID` = e.`EQUIPMENT_GROUP_ID`
+        WHERE se.`FUNCTION_ID` = #{functionId};
+    </select>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.FunctionMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityFunction" id="FunctionMap">
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="functionName" column="FUNCTION_NAME" jdbcType="VARCHAR"/>
+<!--        <result property="planConfigId" column="PLAN_CONFIG_ID" jdbcType="VARCHAR"/>-->
+        <result property="labId" column="LAB_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getFunction" resultMap="FunctionMap">
+        select *
+        from FUNCTION_TABLE
+        where FUNCTION_ID = #{functionId};
+    </select>
+</mapper>

@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+
+    <!-- 引入属性文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+
+    <!--配置多个数据库源-->
+    <!-- 配置数据源 -->
+    <bean id="dataSource1" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc1.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc2.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource3" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc3.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource4" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc4.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource5" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc5.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource6" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc6.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource7" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc7.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource8" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc8.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource9" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc9.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource10" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc10.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource11" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc11.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource12" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc12.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource13" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc13.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource14" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc14.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource15" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc15.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource16" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc16.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource17" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc17.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource18" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc18.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource19" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc19.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource20" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc20.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource21" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc21.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource22" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc22.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource23" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc23.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource24" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc24.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource25" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc25.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource26" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc26.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource27" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc27.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource28" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc28.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource29" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc29.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource30" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc30.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource31" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc31.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource32" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc32.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource33" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc33.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource34" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc34.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource35" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc35.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource36" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc36.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource37" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc37.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource38" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc38.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource39" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc39.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource40" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc40.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource41" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc41.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource42" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc42.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource43" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc43.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource44" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc44.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource45" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc45.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource46" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc46.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource47" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc47.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource48" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc48.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource49" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc49.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource50" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc50.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource51" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc51.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource52" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc52.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource53" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc53.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource54" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc54.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource55" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc55.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource56" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc56.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource57" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc57.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource58" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc58.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource59" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc59.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource60" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc60.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource61" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc61.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource62" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc62.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource63" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc63.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource64" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc64.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource65" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc65.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource66" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc66.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="dataSource67" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc67.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceOAT" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcOAT.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceOAT1116" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcOAT1116.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceOAT1203" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcOAT1203.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceOAT1209" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcOAT1209.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceOATUat2" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcOATUat2.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceDataTest" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcDataTest.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceDataCheckTest1" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcDataCheckTest1.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceDataCheckTest2" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcDataCheckTest2.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceDataCheckTest3" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcDataCheckTest3.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceDataCheckTest4" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcDataCheckTest4.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceDataCheckTest5" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcDataCheckTest5.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceDataCheckTest6" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcDataCheckTest6.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <bean id="datasourceDataCheckTest7" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" init-method="init">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbcDataCheckTest7.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="10"/>
+    </bean>
+    <!-- 动态切换数据源 -->
+    <bean id="dataSource" class="com.oat.common.utils.datasource.MultipleDataSourceToChoose" lazy-init="true">
+        <description>数据源</description>
+        <property name="targetDataSources">
+            <map key-type="java.lang.String" value-type="javax.sql.DataSource">
+                <entry key="datasource1" value-ref="dataSource1" />
+                <entry key="datasource2" value-ref="dataSource2" />
+                <entry key="datasource3" value-ref="dataSource3" />
+                <entry key="datasource4" value-ref="dataSource4" />
+                <entry key="datasource5" value-ref="dataSource5" />
+                <entry key="datasource6" value-ref="dataSource6" />
+                <entry key="datasource7" value-ref="dataSource7" />
+                <entry key="datasource8" value-ref="dataSource8" />
+                <entry key="datasource9" value-ref="dataSource9" />
+                <entry key="datasource10" value-ref="dataSource10" />
+                <entry key="datasource11" value-ref="dataSource11" />
+                <entry key="datasource12" value-ref="dataSource12" />
+                <entry key="datasource13" value-ref="dataSource13" />
+                <entry key="datasource14" value-ref="dataSource14" />
+                <entry key="datasource15" value-ref="dataSource15" />
+                <entry key="datasource16" value-ref="dataSource16" />
+                <entry key="datasource17" value-ref="dataSource17" />
+                <entry key="datasource18" value-ref="dataSource18" />
+                <entry key="datasource19" value-ref="dataSource19" />
+                <entry key="datasource20" value-ref="dataSource20" />
+                <entry key="datasource21" value-ref="dataSource21" />
+                <entry key="datasource22" value-ref="dataSource22" />
+                <entry key="datasource23" value-ref="dataSource23" />
+                <entry key="datasource24" value-ref="dataSource24" />
+                <entry key="datasource25" value-ref="dataSource25" />
+                <entry key="datasource26" value-ref="dataSource26" />
+                <entry key="datasource27" value-ref="dataSource27" />
+                <entry key="datasource28" value-ref="dataSource28" />
+                <entry key="datasource29" value-ref="dataSource29" />
+                <entry key="datasource30" value-ref="dataSource30" />
+                <entry key="datasource31" value-ref="dataSource31" />
+                <entry key="datasource32" value-ref="dataSource32" />
+                <entry key="datasource33" value-ref="dataSource33" />
+                <entry key="datasource34" value-ref="dataSource34" />
+                <entry key="datasource35" value-ref="dataSource35" />
+                <entry key="datasource36" value-ref="dataSource36" />
+                <entry key="datasource37" value-ref="dataSource37" />
+                <entry key="datasource38" value-ref="dataSource38" />
+                <entry key="datasource39" value-ref="dataSource39" />
+                <entry key="datasource40" value-ref="dataSource40" />
+                <entry key="datasource41" value-ref="dataSource41" />
+                <entry key="datasource42" value-ref="dataSource42" />
+                <entry key="datasource43" value-ref="dataSource43" />
+                <entry key="datasource44" value-ref="dataSource44" />
+                <entry key="datasource45" value-ref="dataSource45" />
+                <entry key="datasource46" value-ref="dataSource46" />
+                <entry key="datasource47" value-ref="dataSource47" />
+                <entry key="datasource48" value-ref="dataSource48" />
+                <entry key="datasource49" value-ref="dataSource49" />
+                <entry key="datasource50" value-ref="dataSource50" />
+                <entry key="datasource51" value-ref="dataSource51" />
+                <entry key="datasource52" value-ref="dataSource52" />
+                <entry key="datasource53" value-ref="dataSource53" />
+                <entry key="datasource54" value-ref="dataSource54" />
+                <entry key="datasource55" value-ref="dataSource55" />
+                <entry key="datasource56" value-ref="dataSource56" />
+                <entry key="datasource57" value-ref="dataSource57" />
+                <entry key="datasource58" value-ref="dataSource58" />
+                <entry key="datasource59" value-ref="dataSource59" />
+                <entry key="datasource60" value-ref="dataSource60" />
+                <entry key="datasource61" value-ref="dataSource61" />
+                <entry key="datasource62" value-ref="dataSource62" />
+                <entry key="datasource63" value-ref="dataSource63" />
+                <entry key="datasource64" value-ref="dataSource64" />
+                <entry key="datasource65" value-ref="dataSource65" />
+                <entry key="datasource66" value-ref="dataSource66" />
+                <entry key="datasource67" value-ref="dataSource67" />
+                <entry key="datasourceOAT" value-ref="datasourceOAT" />
+                <entry key="datasourceDataTest" value-ref="datasourceDataTest" />
+                <entry key="datasourceDataCheckTest1" value-ref="datasourceDataCheckTest1" />
+                <entry key="datasourceDataCheckTest2" value-ref="datasourceDataCheckTest2" />
+                <entry key="datasourceDataCheckTest3" value-ref="datasourceDataCheckTest3" />
+                <entry key="datasourceDataCheckTest4" value-ref="datasourceDataCheckTest4" />
+                <entry key="datasourceDataCheckTest5" value-ref="datasourceDataCheckTest5" />
+                <entry key="datasourceDataCheckTest6" value-ref="datasourceDataCheckTest6" />
+                <entry key="datasourceDataCheckTest7" value-ref="datasourceDataCheckTest7" />
+                <entry key="datasourceOAT1116" value-ref="datasourceOAT1116" />
+                <entry key="datasourceOAT1203" value-ref="datasourceOAT1203" />
+                <entry key="datasourceOAT1209" value-ref="datasourceOAT1209" />
+                <entry key="datasourceOATUat2" value-ref="datasourceOATUat2" />
+            </map>
+        </property>
+        <!-- 设置默认的目标数据源 -->
+        <property name="defaultTargetDataSource" ref="dataSource4" />
+    </bean>
+
+
+    <!--配置sqlSessionFactory工厂-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:/mapper/*.xml"/>
+    </bean>
+
+    <!--扫描dao包，创建sqlSession会话类-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.oat.patac.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!-- 配置德鲁伊连接池-->
+    <!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">-->
+    <!--        &lt;!&ndash; 基本属性 url、user、password &ndash;&gt;-->
+    <!--        <property name="url" value="${url}" />-->
+    <!--        <property name="username" value="${username}" />-->
+    <!--        <property name="password" value="${password}" />-->
+    <!--        <property name="driverClassName" value="${driver}" />-->
+    <!--        &lt;!&ndash; 配置初始化大小、最小、最大 &ndash;&gt;-->
+    <!--        <property name="initialSize" value="3" />-->
+    <!--        <property name="minIdle" value="3" />-->
+    <!--        <property name="maxActive" value="20" />-->
+    <!--        &lt;!&ndash; 配置获取连接等待超时的时间 &ndash;&gt;-->
+    <!--        <property name="maxWait" value="60000" />-->
+    <!--        &lt;!&ndash; 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 &ndash;&gt;-->
+    <!--        <property name="timeBetweenEvictionRunsMillis" value="60000" />-->
+    <!--        &lt;!&ndash; 配置一个连接在池中最小生存的时间，单位是毫秒 &ndash;&gt;-->
+    <!--        <property name="minEvictableIdleTimeMillis" value="300000" />-->
+    <!--        <property name="validationQuery" value="SELECT 1" />-->
+    <!--        <property name="testWhileIdle" value="true" />-->
+    <!--        <property name="testOnBorrow" value="false" />-->
+    <!--        <property name="testOnReturn" value="false" />-->
+    <!--        &lt;!&ndash; 打开PSCache，并且指定每个连接上PSCache的大小 &ndash;&gt;-->
+    <!--        <property name="poolPreparedStatements" value="true" />-->
+    <!--        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />-->
+    <!--    </bean>-->
+
+</beans>

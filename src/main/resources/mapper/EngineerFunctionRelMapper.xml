@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.EngineerFunctionRelMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityEngineerFunctionRel" id="EngineerFunctionRelMap">
+        <result property="staffId" column="STAFF_ID" jdbcType="VARCHAR"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+        <result property="workLoad" column="WORK_LOAD" jdbcType="INTEGER"/>
+        <result property="maxWorkLoad" column="MAX_WORK_LOAD" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getAllEngineerFunctionRels" resultType="com.oat.patac.entity.EntityEngineerFunctionRel">
+        select  *
+        from ENGINEER_FUNCTION_REL
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+</mapper>

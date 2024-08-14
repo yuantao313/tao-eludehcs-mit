@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.ProcedureMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityProcedure" id="ProcedureMap">
+        <result property="procedureNo" column="PROCEDURE_NO" jdbcType="VARCHAR"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getAllProcedure" resultMap="ProcedureMap">
+        select * from `PROCEDURE_TABLE`
+        where FUNCTION_ID = #{functionId};
+    </select>
+
+<!--    select * from `PROCEDURE` p-->
+<!--    where p.`PROCEDURE_NO` in-->
+<!--    (select st.`PROCEDURE_NO` from `SUB_TASK` st-->
+<!--    where st.`FUNCTION_ID` = #{functionId}-->
+<!--    and (st.TEST_STATUS in ("1", "4") or st.TEST_STATUS is null));-->
+    <select id="getProcedureBySubTask" resultMap="ProcedureMap">
+        SELECT DISTINCT p.`FUNCTION_ID`, p.`PROCEDURE_NO` FROM `PROCEDURE_TABLE` p
+                 JOIN `sub_task` st ON p.`PROCEDURE_NO` = st.`PROCEDURE_NO`
+        WHERE  st.`FUNCTION_ID` = #{functionId} AND (st.TEST_STATUS IN ("1", "4") OR st.TEST_STATUS IS NULL);
+    </select>
+</mapper>

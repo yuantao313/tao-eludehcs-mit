@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oat.patac.dao.TaskPlanInputMapper">
+
+    <resultMap type="com.oat.patac.entity.EntityTaskPlanInput" id="TaskPlanInputMap">
+        <result property="taskNo" column="TASK_NO" jdbcType="VARCHAR"/>
+        <result property="taskPlanStart" column="TASK_PLAN_START" jdbcType="TIMESTAMP"/>
+        <result property="taskPlanEnd" column="TASK_PLAN_END" jdbcType="TIMESTAMP"/>
+        <result property="taskActualStart" column="TASK_ACTUAL_START" jdbcType="TIMESTAMP"/>
+        <result property="taskActualEnd" column="TASK_ACTUAL_END" jdbcType="TIMESTAMP"/>
+        <result property="respEngineerId" column="RES_ENGINEER_ID" jdbcType="VARCHAR"/>
+        <result property="isCompleted" column="IS_COMPLETED" jdbcType="VARCHAR"/>
+        <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getAllTaskPlanInput" resultMap="TaskPlanInputMap">
+        SELECT t.`FUNCTION_ID`, t.`IS_COMPLETED`, t.`RES_ENGINEER_ID`, t.`TASK_ACTUAL_END`, t.`TASK_ACTUAL_START`,
+               t.`TASK_NO`, t.`TASK_PLAN_END`, t.`TASK_PLAN_START`
+        FROM TASK_PLAN_INPUT t
+                   JOIN `sub_task` s ON t.`TASK_NO` = s.`TASK_NO`
+        WHERE s.FUNCTION_ID = #{functionId} AND (s.TEST_STATUS IN ("1", "4") OR s.TEST_STATUS IS NULL) ;
+
+    </select>
+
+</mapper>
